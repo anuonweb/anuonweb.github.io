@@ -3,6 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<!-- Social Media & Instagram Share Preview -->
+<meta property="og:title" content="Sky Burst: Starling Rush 🚀" />
+<meta property="og:description" content="Tap to burst the flock before time runs out! Can you beat the high score?" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://<your-github-username>.github.io/<repository-name>/" />
 <title>Sky Burst: Starling Rush</title>
 <style>
   :root {
@@ -286,7 +291,18 @@
  * SKY BURST: STARLING RUSH
  * Pure Canvas + Web Audio API Single-file Game
  */
+// Lock the game to run ONLY on your GitHub Pages
+const ALLOWED_HOST = "github.io"; 
 
+if (window.location.hostname !== "localhost" && !window.location.hostname.endsWith(ALLOWED_HOST)) {
+  document.body.innerHTML = `
+    <div style="color:white;text-align:center;padding-top:30%;font-family:sans-serif;">
+      <h2>Official Game Hosted on GitHub Pages</h2>
+      <p>Please play the original version at your official link!</p>
+    </div>
+  `;
+  throw new Error("Unauthorized mirror detected.");
+}
 // Web Audio Synthesizer (Zero External Audio Assets)
 class SoundFX {
   constructor() {
